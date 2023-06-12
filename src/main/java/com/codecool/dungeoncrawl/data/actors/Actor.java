@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
+    public Cell cell;
     private int health = 10;
 
     public Actor(Cell cell) {
