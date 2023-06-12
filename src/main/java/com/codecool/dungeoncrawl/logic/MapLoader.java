@@ -45,6 +45,32 @@ public class MapLoader {
                         case 'p':
                             cell.setType(CellType.PRINCESS);
                             break;
+                        case 'w':
+                            cell.setType(CellType.WEAPON);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.DOORMAN);
+                            break;
+                        case 'g':
+                            cell.setType(CellType.GOLD);
+                            break;
+                        case 'a':
+                            cell.setType(CellType.ARMOR);
+                            break;
+                            //test for player skins
+                        case 'x':
+                            cell.setType(CellType.PLAYER_WITH_ARMOR);
+                            break;
+                        case 'y':
+                            cell.setType(CellType.PLAYER_WITH_WEAPON);
+                            break;
+                        case 'f':
+                            cell.setType(CellType.PLAYER_FULL_GEAR);
+                            break;
+                            //and of test
+                        case 'b':
+                            cell.setType(CellType.BOSS);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

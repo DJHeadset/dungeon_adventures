@@ -4,7 +4,15 @@ public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
     WALL("wall"),
-    PRINCESS("princess");
+    PRINCESS("princess"),
+    WEAPON("weapon"),
+    DOORMAN("doorman"),
+    GOLD("gold"),
+    ARMOR("armor"),
+    PLAYER_WITH_ARMOR("playerWithArmor"),
+    PLAYER_WITH_WEAPON("playerWithWeapon"),
+    PLAYER_FULL_GEAR("playerFullGear"),
+    BOSS("boss");
     private final String tileName;
 
     CellType(String tileName) {
