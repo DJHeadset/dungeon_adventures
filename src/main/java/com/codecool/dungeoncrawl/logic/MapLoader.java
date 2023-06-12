@@ -57,17 +57,6 @@ public class MapLoader {
                         case 'a':
                             cell.setType(CellType.ARMOR);
                             break;
-                            //test for player skins
-                        case 'x':
-                            cell.setType(CellType.PLAYER_WITH_ARMOR);
-                            break;
-                        case 'y':
-                            cell.setType(CellType.PLAYER_WITH_WEAPON);
-                            break;
-                        case 'f':
-                            cell.setType(CellType.PLAYER_FULL_GEAR);
-                            break;
-                            //and of test
                         case 'b':
                             cell.setType(CellType.BOSS);
                             break;

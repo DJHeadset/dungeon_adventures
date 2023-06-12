@@ -1,18 +1,23 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 
 public class Player extends Actor {
 
-    private final int gold;
-    private final boolean weapon;
+    private int gold;
+    private boolean armor;
+    private boolean weapon;
 
     public int getGold() {
         return gold;
     }
 
-    public boolean isWeapon() {
+    public boolean hasWeapon() {
         return weapon;
+    }
+    public boolean hasArmor() {
+        return armor;
     }
 
     public Player(Cell cell) {
@@ -22,10 +27,19 @@ public class Player extends Actor {
         this.defense = 5;
         this.gold = 1500;
         this.weapon = false;
+        this.armor = false;
     }
 
     public String getTileName() {
-        return "player";
+        if(this.hasWeapon() && !this.hasArmor()) {
+            return "playerWithWeapon";
+        } else if(!this.hasWeapon() && this.hasArmor()) {
+            return "playerWithArmor";
+        } else if(this.hasWeapon() && this.hasArmor()) {
+            return "playerFullGear";
+        } else {
+            return "player";
+        }
     }
     @Override
     public void move(int dx, int dy) {
@@ -35,6 +49,26 @@ public class Player extends Actor {
         }
         if(nextCell.getTileName().equals("floor")){
             cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        } else if (nextCell.getTileName().equals("gold")) {
+            gold += 10;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
+        } else if (nextCell.getTileName().equals("armor")) {
+            defense += 10;
+            armor = true;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
+        } else if (nextCell.getTileName().equals("weapon")) {
+            attack += 10;
+            weapon = true;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
         }
