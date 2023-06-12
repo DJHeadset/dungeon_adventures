@@ -76,8 +76,14 @@ public class UI {
         for(Skeleton skeleton : skeletons){
             int movements = 1;
             int moveX = random.nextInt(3)-1;
-            int moveY = movements - Math.abs(moveX);
+            int moveY = random.nextInt(3)-1;
             skeleton.move(moveX, moveY);
+            if(random.nextBoolean()){
+                skeleton.move(moveX, 0);
+            }
+            else {
+                skeleton.move(0, moveY);
+            }
         }
     }
     private void moveGhost(){
