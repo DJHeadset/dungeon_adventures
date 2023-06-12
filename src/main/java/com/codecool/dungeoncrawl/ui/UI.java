@@ -74,39 +74,34 @@ public class UI {
         mainStage.setGoldLabelText(logic.getPlayerGold());
     }
 
-    private void moveSkeletons(){
+    private void moveSkeletons() {
         List<Skeleton> skeletons = logic.getMap().getSkeletons();
-        for(Skeleton skeleton : skeletons){
+        for (Skeleton skeleton : skeletons) {
             int movements = 1;
-            int moveX = random.nextInt(3)-1;
+            int moveX = random.nextInt(3) - 1;
             int moveY = movements - Math.abs(moveX);
             skeleton.move(moveX, moveY);
         }
     }
-    private void moveGhost(){
+
+    private void moveGhost() {
         Cell playerLocation = logic.getMap().getPlayer().getCell();
         Cell ghostLocation = logic.getMap().getGhost().getCell();
-        int moveX = playerLocation.getX() > ghostLocation.getX()? 1 :
-                playerLocation.getX() == ghostLocation.getX()? 0: -1;
-        int moveY = playerLocation.getY() > ghostLocation.getY()? 1 :
-                playerLocation.getY() == ghostLocation.getY()? 0: -1;
-        if(random.nextBoolean()){
-            if(moveX != 0) {
+        int moveX = Integer.compare(playerLocation.getX(), ghostLocation.getX());
+        int moveY = Integer.compare(playerLocation.getY(), ghostLocation.getY());
+        if (random.nextBoolean()) {
+            if (moveX != 0) {
                 logic.getMap().getGhost().move(moveX, 0);
-            }
-            else {
+            } else {
                 logic.getMap().getGhost().move(moveX, moveY);
             }
-        }
-        else {
-            if(moveY != 0){
+        } else {
+            if (moveY != 0) {
                 logic.getMap().getGhost().move(0, moveY);
-            }
-            else {
+            } else {
                 logic.getMap().getGhost().move(moveX, moveY);
             }
         }
-
 
 
     }
