@@ -4,8 +4,24 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    protected int health;
+    protected int defense;
+    protected int attack;
     public Cell cell;
-    private int health = 10;
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -14,18 +30,9 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if(nextCell.getActor() != null){
-            System.out.println("DANGER!!!!");
-        }
-        if(nextCell.getTileName().equals("floor")){
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        }
-    }
-
-    public int getHealth() {
-        return health;
+        cell.setActor(null);
+        nextCell.setActor(this);
+        cell = nextCell;
     }
 
     public Cell getCell() {

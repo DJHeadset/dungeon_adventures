@@ -40,7 +40,7 @@ public class MapLoader {
                             map.addSkeleton(new Skeleton(cell));
                             break;
                         case 'g' :
-                            cell.setType(CellType.EMPTY);
+                            cell.setType(CellType.FLOOR);
                             map.setGhost(new Ghost(cell));
                             break;
                         case '@':
@@ -49,6 +49,21 @@ public class MapLoader {
                             break;
                         case 'p':
                             cell.setType(CellType.PRINCESS);
+                            break;
+                        case 'w':
+                            cell.setType(CellType.WEAPON);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.DOORMAN);
+                            break;
+                        case 'c':
+                            cell.setType(CellType.GOLD);
+                            break;
+                        case 'a':
+                            cell.setType(CellType.ARMOR);
+                            break;
+                        case 'b':
+                            cell.setType(CellType.BOSS);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

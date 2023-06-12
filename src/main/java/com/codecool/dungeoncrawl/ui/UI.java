@@ -17,12 +17,12 @@ import java.util.Random;
 import java.util.Set;
 
 public class UI {
-    private Canvas canvas;
-    private GraphicsContext context;
+    private final Canvas canvas;
+    private final GraphicsContext context;
 
-    private MainStage mainStage;
-    private GameLogic logic;
-    private Set<KeyHandler> keyHandlers;
+    private final MainStage mainStage;
+    private final GameLogic logic;
+    private final Set<KeyHandler> keyHandlers;
 
     private Random random;
 
@@ -69,15 +69,17 @@ public class UI {
             }
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setAttackLabelText(logic.getPlayerAttack());
+        mainStage.setDefenseLabelText(logic.getPlayerDefense());
+        mainStage.setGoldLabelText(logic.getPlayerGold());
     }
 
-    private void moveSkeletons(){
+    private void moveSkeletons() {
         List<Skeleton> skeletons = logic.getMap().getSkeletons();
-        for(Skeleton skeleton : skeletons){
+        for (Skeleton skeleton : skeletons) {
             int movements = 1;
             int moveX = random.nextInt(3)-1;
             int moveY = random.nextInt(3)-1;
-            skeleton.move(moveX, moveY);
             if(random.nextBoolean()){
                 skeleton.move(moveX, 0);
             }
@@ -86,26 +88,22 @@ public class UI {
             }
         }
     }
-    private void moveGhost(){
+
+    private void moveGhost() {
         Cell playerLocation = logic.getMap().getPlayer().getCell();
         Cell ghostLocation = logic.getMap().getGhost().getCell();
-        int moveX = playerLocation.getX() > ghostLocation.getX()? 1 :
-                playerLocation.getX() == ghostLocation.getX()? 0: -1;
-        int moveY = playerLocation.getY() > ghostLocation.getY()? 1 :
-                playerLocation.getY() == ghostLocation.getY()? 0: -1;
-        if(random.nextBoolean()){
-            if(moveX != 0) {
+        int moveX = Integer.compare(playerLocation.getX(), ghostLocation.getX());
+        int moveY = Integer.compare(playerLocation.getY(), ghostLocation.getY());
+        if (random.nextBoolean()) {
+            if (moveX != 0) {
                 logic.getMap().getGhost().move(moveX, 0);
-            }
-            else {
+            } else {
                 logic.getMap().getGhost().move(moveX, moveY);
             }
-        }
-        else {
-            if(moveY != 0){
+        } else {
+            if (moveY != 0) {
                 logic.getMap().getGhost().move(0, moveY);
-            }
-            else {
+            } else {
                 logic.getMap().getGhost().move(moveX, moveY);
             }
         }
