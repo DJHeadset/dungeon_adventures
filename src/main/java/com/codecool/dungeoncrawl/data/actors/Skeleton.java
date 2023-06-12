@@ -11,4 +11,16 @@ public class Skeleton extends Actor {
     public String getTileName() {
         return "skeleton";
     }
+    @Override
+    public void move(int dx, int dy) {
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        if(nextCell.getActor() != null){
+            System.out.println("DANGER!!!!");
+        }
+        if(nextCell.getTileName().equals("floor")){
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+    }
 }
