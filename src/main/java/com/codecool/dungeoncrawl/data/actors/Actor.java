@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
+
     public int getHealth() {
         return health;
     }
@@ -20,6 +21,7 @@ public abstract class Actor implements Drawable {
     protected int defense;
     protected int attack;
     public Cell cell;
+
 
     public Actor(Cell cell) {
         this.cell = cell;

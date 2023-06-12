@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.ui.keyeventhandler.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.Random;
 import java.util.Set;
 
 public class Game extends Application {
@@ -20,7 +21,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right());
         this.logic = new GameLogic();
-        this.ui = new UI(logic, keyHandlers);
+        this.ui = new UI(logic, keyHandlers, new Random());
         ui.setUpPain(primaryStage);
 
         primaryStage.setTitle("Dungeon Crawl");
