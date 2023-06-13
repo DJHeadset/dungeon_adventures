@@ -5,59 +5,69 @@ import com.codecool.dungeoncrawl.data.Cell;
 import java.util.Random;
 
 public class Skeleton extends Actor {
-
     private Random random = new Random();
     private int health;
+
     public Skeleton(Cell cell) {
         super(cell);
-        this.health = 10;
+        this.health = 100;
         this.exp = 5;
-
     }
 
     @Override
     public String getTileName() {
         return "skeleton";
     }
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if(nextCell.getTileName().equals("floor") && nextCell.getActor() == null){
+        if (nextCell.getTileName().equals("floor") && nextCell.getActor() == null) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
     }
 
-    private void attack(){
+    private void attack(Player player) {
+        System.out.println(health);
+        health -= player.attack - defense;
+        if (health <= 0) {
+            player.exp += exp;
+        }
     }
 
-    public void act(){
-        if(isPlayerNearby()){
-
-            attack();
-        }
-        else{
-            int movements = 1;
-            int moveX = random.nextInt(3)-1;
-            int moveY = random.nextInt(3)-1;
-            if(random.nextBoolean()){
+    public void act() {
+        Player player = isPlayerNearby();
+        if (player != null) {
+            attack(player);
+        } else {
+            int moveX = random.nextInt(3) - 1;
+            int moveY = random.nextInt(3) - 1;
+            if (random.nextBoolean()) {
                 move(moveX, 0);
-            }
-            else {
+            } else {
                 move(0, moveY);
             }
         }
     }
 
-    private boolean isPlayerNearby(){
-        return cell.getNeighbor(0,1).getActor() instanceof Player ||
-                cell.getNeighbor(0,-1).getActor() instanceof Player  ||
-                cell.getNeighbor(1,0).getActor() instanceof Player  ||
-                cell.getNeighbor(-1,0).getActor() instanceof Player ;
-    }
-
-    public void setHealth(){
-        health--;
+    private Player isPlayerNearby() {
+        if (cell.getNeighbor(0, 1).getActor() instanceof Player) {
+            return (Player) cell.getNeighbor(0, 1).getActor();
+        } else if (cell.getNeighbor(0, -1).getActor() instanceof Player) {
+            return (Player) cell.getNeighbor(0, -1).getActor();
+        } else if (cell.getNeighbor(1, 0).getActor() instanceof Player) {
+            return (Player) cell.getNeighbor(1, 0).getActor();
+        } else if (cell.getNeighbor(-1, 0).getActor() instanceof Player) {
+            return (Player) cell.getNeighbor(-1, 0).getActor();
+        }
+        return null;
     }
 }
+

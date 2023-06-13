@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
@@ -13,9 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class UI {
     private final Canvas canvas;
@@ -56,10 +53,9 @@ public class UI {
 
     public void refresh() {
         moveSkeletons();
-        if(!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
             moveGhost();
-        }
-        else {
+        } else {
             logic.getMap().removeGhost();
         }
         context.setFill(Color.BLACK);
@@ -75,7 +71,7 @@ public class UI {
             }
         }
         mainStage.setLevelLabelText(logic.getPlayerLevel());
-        mainStage.setExpLabelText(Integer.toString(10- logic.getPlayerExp()));
+        mainStage.setExpLabelText(Integer.toString(10 - logic.getPlayerExp()));
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
@@ -84,14 +80,24 @@ public class UI {
 
     private void moveSkeletons() {
         List<Skeleton> skeletons = logic.getMap().getSkeletons();
-        for (Skeleton skeleton : skeletons) {
-           skeleton.act();
+        List<Skeleton> activeSkeletons = new ArrayList<>(skeletons);
+
+        Iterator<Skeleton> iterator = activeSkeletons.iterator();
+        while (iterator.hasNext()) {
+            Skeleton skeleton = iterator.next();
+            System.out.println(skeleton.getHealth());
+            skeleton.act();
+            if (skeleton.getHealth() <= 0) {
+                skeleton.getCell().setActor(null);
+                iterator.remove();
+            }
         }
+        System.out.println("------");
+        logic.getMap().setSkeletons(activeSkeletons);
     }
 
     private void moveGhost() {
-        if(logic.getMap().getGhost() != null) {
-            logic.getMap().getGhost().act(logic.getMap().getPlayer());
-        }
+        logic.getMap().getGhost().act(logic.getMap().getPlayer());
     }
 }
+
