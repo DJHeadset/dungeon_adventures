@@ -49,7 +49,7 @@ public class Player extends Actor {
                ((Skeleton) nextCell.getActor()).setHealth();
            }
         }
-        if(nextCell.getTileName().equals("floor") && nextCell.getActor() == null){
+        if((nextCell.getTileName().equals("floor")|| nextCell.getTileName().equals("road")) && nextCell.getActor() == null){
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;

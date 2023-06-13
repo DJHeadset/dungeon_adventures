@@ -11,11 +11,9 @@ import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static com.codecool.dungeoncrawl.data.CellType.BOSS;
-
 public class MapLoader {
     public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+        InputStream is = MapLoader.class.getResourceAsStream("/map02.txt");
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -71,6 +69,15 @@ public class MapLoader {
                             break;
                         case 'h':
                             cell.setType(CellType.HEALTH_POTION);
+                            break;
+                        case 't':
+                            cell.setType(CellType.TREE);
+                            break;
+                        case 'T':
+                            cell.setType(CellType.TREE2);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.ROAD);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

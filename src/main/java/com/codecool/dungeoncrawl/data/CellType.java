@@ -10,7 +10,11 @@ public enum CellType {
     GOLD("gold"),
     ARMOR("armor"),
     BOSS("boss"),
-    HEALTH_POTION("healthPotion");
+    HEALTH_POTION("healthPotion"),
+    TREE("tree"),
+    TREE2("tree2"),
+    ROAD("road");
+
     private final String tileName;
 
     CellType(String tileName) {
