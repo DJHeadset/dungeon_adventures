@@ -7,15 +7,12 @@ import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static com.codecool.dungeoncrawl.data.CellType.BOSS;
-
 public class MapLoader {
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+    public static GameMap loadMap(String mapString) {
+        InputStream is = MapLoader.class.getResourceAsStream(mapString);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -68,6 +65,9 @@ public class MapLoader {
                         case 'b':
                             cell.setType(CellType.BOSS);
                             map.setBoss(new Boss(cell));
+                            break;
+                        case 'x':
+                            cell.setType(CellType.DOOR);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

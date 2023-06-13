@@ -85,8 +85,5 @@ public class UI {
         int playerX = logic.getMap().getPlayer().getX();
         int playerY = logic.getMap().getPlayer().getY();
         logic.getMap().getGhost().act(playerX, playerY);
-
-
-
     }
 }

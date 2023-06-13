@@ -2,12 +2,15 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.logic.MapChanger;
+
 
 public class Player extends Actor {
 
     private int gold;
     private boolean armor;
     private boolean weapon;
+    private MapChanger mapChanger;
 
     public int getGold() {
         return gold;
@@ -79,6 +82,14 @@ public class Player extends Actor {
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if (nextCell.getTileName().equals("door")) {
+            System.out.println("Door");
+            mapChanger.changeMap("/map02.txt");
+
         }
+    }
+
+    public void setMapChanger(MapChanger mapChanger) {
+        this.mapChanger=mapChanger;
     }
 }

@@ -9,7 +9,8 @@ public enum CellType {
     DOORMAN("doorman"),
     GOLD("gold"),
     ARMOR("armor"),
-    BOSS("boss");
+    BOSS("boss"),
+    DOOR("door");
     private final String tileName;
 
     CellType(String tileName) {
