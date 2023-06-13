@@ -74,6 +74,8 @@ public class UI {
                 }
             }
         }
+        mainStage.setLevelLabelText(logic.getPlayerLevel());
+        mainStage.setExpLabelText(Integer.toString(10- logic.getPlayerExp()));
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());

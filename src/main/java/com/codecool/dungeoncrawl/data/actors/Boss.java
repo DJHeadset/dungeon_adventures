@@ -9,6 +9,7 @@ public class Boss extends Actor {
         this.health = 30;
         this.attack = 10;
         this.defense = 5;
+        this.exp = 10;
     }
 
     @Override

@@ -10,6 +10,11 @@ public class StatusPane {
     public static final int RIGHT_PANEL_PADDING = 10;
     private GridPane ui;
     private Label healthTextLabel;
+    private Label levelTextLabel;
+    private Label levelValueLabel;
+
+    private Label expTextLabel;
+    private Label expValueLabel;
     private Label attackTextLabel;
     private Label defenseTextLabel;
     private Label goldTextLabel;
@@ -22,6 +27,10 @@ public class StatusPane {
 
     public StatusPane() {
         ui = new GridPane();
+        levelTextLabel = new Label();
+        levelValueLabel = new Label("Level: ");
+        expTextLabel = new Label();
+        expValueLabel = new Label("Missing xp: ");
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
         attackTextLabel = new Label("Attack: ");
@@ -38,15 +47,18 @@ public class StatusPane {
 
         ui.setPrefWidth(RIGHT_PANEL_WIDTH);
         ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
-
-        ui.add(healthTextLabel, 0, 0);
-        ui.add(healthValueLabel, 1, 0);
-        ui.add(attackTextLabel, 0, 1);
-        ui.add(attackValueLabel, 1, 1);
-        ui.add(defenseTextLabel, 0, 2);
-        ui.add(defenseValueLabel, 1, 2);
-        ui.add(goldTextLabel, 0, 4);
-        ui.add(goldValueLabel, 1, 4);
+        ui.add(levelTextLabel, 1,0);
+        ui.add(levelValueLabel, 0,0);
+        ui.add(expTextLabel, 1,1);
+        ui.add(expValueLabel, 0,1);
+        ui.add(healthTextLabel, 0, 2);
+        ui.add(healthValueLabel, 1, 2);
+        ui.add(attackTextLabel, 0, 3);
+        ui.add(attackValueLabel, 1, 3);
+        ui.add(defenseTextLabel, 0, 4);
+        ui.add(defenseValueLabel, 1, 4);
+        ui.add(goldTextLabel, 0, 5);
+        ui.add(goldValueLabel, 1, 5);
 
 
         BorderPane borderPane = new BorderPane();
@@ -57,6 +69,9 @@ public class StatusPane {
     public void setHealthValue(String text) {
         healthValueLabel.setText(text);
     }
+
+    public void setLevelValue(String text) { levelTextLabel.setText(text);}
+    public void setExpTextLabel(String text) { expTextLabel.setText(text);}
     public void setAttackValue(String text) {
         attackValueLabel.setText(text);
     }
