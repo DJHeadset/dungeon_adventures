@@ -17,9 +17,12 @@ public abstract class Actor implements Drawable {
         return attack;
     }
 
+    public int getExp() {return exp;}
+
     protected int health;
     protected int defense;
     protected int attack;
+    protected int exp;
     public Cell cell;
 
 

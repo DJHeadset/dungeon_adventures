@@ -8,12 +8,10 @@ public class Skeleton extends Actor {
 
     private Random random = new Random();
     private int health;
-
-    private char name;
     public Skeleton(Cell cell) {
         super(cell);
         this.health = 10;
-        this.name = (char) (random.nextInt(26) + 'a');
+        this.exp = 5;
 
     }
 

@@ -25,6 +25,13 @@ public class GameLogic {
         return map.getCell(x, y);
     }
 
+    public String getPlayerLevel(){
+        return Integer.toString(map.getPlayer().getLevel());
+    }
+    public int getPlayerExp(){
+        return map.getPlayer().getExp();
+    }
+
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
     }
