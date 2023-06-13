@@ -45,9 +45,11 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if(nextCell.getActor() != null){
-            System.out.println("DANGER!!!!");
+           if(nextCell.getActor() instanceof Skeleton){
+               ((Skeleton) nextCell.getActor()).setHealth();
+           }
         }
-        if(nextCell.getTileName().equals("floor")){
+        if(nextCell.getTileName().equals("floor") && nextCell.getActor() == null){
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;

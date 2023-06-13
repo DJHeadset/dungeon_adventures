@@ -43,7 +43,7 @@ public class MapLoader {
                             map.addSkeleton(new Skeleton(cell));
                             break;
                         case 'g' :
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.EMPTY);
                             map.setGhost(new Ghost(cell));
                             break;
                         case '@':
