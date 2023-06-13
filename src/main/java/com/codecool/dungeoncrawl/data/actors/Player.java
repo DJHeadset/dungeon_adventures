@@ -73,6 +73,12 @@ public class Player extends Actor {
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if (nextCell.getTileName().equals("doorman")) {
+            gold -= 10;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
         }
     }
 }

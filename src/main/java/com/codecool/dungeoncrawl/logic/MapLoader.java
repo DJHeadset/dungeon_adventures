@@ -3,12 +3,15 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 
 import java.io.InputStream;
 import java.util.Scanner;
+
+import static com.codecool.dungeoncrawl.data.CellType.BOSS;
 
 public class MapLoader {
     public static GameMap loadMap() {
@@ -64,6 +67,7 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.BOSS);
+                            map.setBoss(new Boss(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

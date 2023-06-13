@@ -9,10 +9,6 @@ public enum CellType {
     DOORMAN("doorman"),
     GOLD("gold"),
     ARMOR("armor"),
-    PLAYER("player"),
-    PLAYER_WITH_ARMOR("playerWithArmor"),
-    PLAYER_WITH_WEAPON("playerWithWeapon"),
-    PLAYER_FULL_GEAR("playerFullGear"),
     BOSS("boss");
     private final String tileName;
 

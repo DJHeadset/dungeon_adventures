@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.data;
 
+import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
@@ -17,6 +18,7 @@ public class GameMap {
     private ArrayList<Skeleton> skeletons = new ArrayList<>();
 
     private Ghost ghost;
+    private Boss boss;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -57,11 +59,17 @@ public class GameMap {
         skeletons.add(skeleton);
     }
 
+
+
     public int getWidth() {
         return width;
     }
 
     public int getHeight() {
         return height;
+    }
+
+    public Boss setBoss(Boss boss) {
+        return boss;
     }
 }
