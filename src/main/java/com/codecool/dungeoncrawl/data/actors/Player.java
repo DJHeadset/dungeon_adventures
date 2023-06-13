@@ -20,23 +20,29 @@ public class Player extends Actor {
         return gold;
     }
 
-    public int getLevel(){ return level;}
-    public int getExp(){ return exp;}
+    public int getLevel() {
+        return level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
 
     public boolean hasWeapon() {
         return weapon;
     }
+
     public boolean hasArmor() {
         return armor;
     }
 
-    public void handleExp(int exp){
+    public void handleExp(int exp) {
         this.exp += exp;
-        while(this.exp >= 10) {
-                this.level++;
-                this.health += 10;
-                this.attack += 2;
-                this.exp = this.exp - 10;
+        while (this.exp >= 10) {
+            this.level++;
+            this.health += 10;
+            this.attack += 2;
+            this.exp = this.exp - 10;
         }
     }
 
@@ -52,30 +58,27 @@ public class Player extends Actor {
         this.armor = false;
     }
 
-    public String getStatusEffect(){
+    public String getStatusEffect() {
         return statusEffect;
     }
 
     public String getTileName() {
-        if(this.hasWeapon() && !this.hasArmor()) {
+        if (this.hasWeapon() && !this.hasArmor()) {
             return "playerWithWeapon";
-        } else if(!this.hasWeapon() && this.hasArmor()) {
+        } else if (!this.hasWeapon() && this.hasArmor()) {
             return "playerWithArmor";
-        } else if(this.hasWeapon() && this.hasArmor()) {
+        } else if (this.hasWeapon() && this.hasArmor()) {
             return "playerFullGear";
         } else {
             return "player";
         }
     }
+
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if(nextCell.getActor() != null){
-           if(nextCell.getActor() instanceof Skeleton){
-               ((Skeleton) nextCell.getActor()).setHealth();
-           }
-        }
-        if((nextCell.getTileName().equals("floor")|| nextCell.getTileName().equals("road")) && nextCell.getActor() == null){
+
+        if ((nextCell.getTileName().equals("floor") || nextCell.getTileName().equals("road")) && nextCell.getActor() == null) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
@@ -108,23 +111,20 @@ public class Player extends Actor {
         } else if (nextCell.getTileName().equals("door")) {
             System.out.println("Door");
             mapChanger.changeMap("/map02.txt");
-
         } else if (nextCell.getTileName().equals("healthPotion")) {
             health += 10;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        }
-        else if(nextCell.getTileName().equals("cursed")){
+        } else if (nextCell.getTileName().equals("cursed")) {
             attack += 20;
             statusEffect = "cursed";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        }
-        else if (nextCell.getTileName().equals("altair")) {
+        } else if (nextCell.getTileName().equals("altair")) {
             statusEffect = "holy";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
@@ -134,6 +134,6 @@ public class Player extends Actor {
     }
 
     public void setMapChanger(MapChanger mapChanger) {
-        this.mapChanger=mapChanger;
+        this.mapChanger = mapChanger;
     }
 }

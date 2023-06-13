@@ -12,13 +12,9 @@ public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
-
     private Player player;
-
     private ArrayList<Skeleton> skeletons = new ArrayList<>();
-
     private Ghost ghost;
-    private Boss boss;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -29,6 +25,38 @@ public class GameMap {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
+    }
+
+    public void removeGhost() {
+        ghost.getCell().setActor(null);
+    }
+
+    public Ghost getGhost() {
+        return ghost;
+    }
+
+    public List<Skeleton> getSkeletons() {
+        return skeletons;
+    }
+
+    public void addSkeleton(Skeleton skeleton) {
+        skeletons.add(skeleton);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Boss setBoss(Boss boss) {
+        return boss;
+    }
+
+    public void setSkeletons(List<Skeleton> activeSkeletons) {
+        skeletons = new ArrayList<>(activeSkeletons);
     }
 
     public Cell getCell(int x, int y) {
@@ -46,34 +74,5 @@ public class GameMap {
     public void setGhost(Ghost ghost) {
         this.ghost = ghost;
     }
-
-    public void removeGhost(){
-        ghost.getCell().setActor(null);
-    }
-
-    public Ghost getGhost() {
-        return ghost;
-    }
-
-    public List<Skeleton> getSkeletons() {
-        return skeletons;
-    }
-
-    public void addSkeleton(Skeleton skeleton) {
-        skeletons.add(skeleton);
-    }
-
-
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public Boss setBoss(Boss boss) {
-        return boss;
-    }
 }
+
