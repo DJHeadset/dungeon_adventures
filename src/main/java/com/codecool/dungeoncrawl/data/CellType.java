@@ -11,7 +11,6 @@ public enum CellType {
     ARMOR("armor"),
     BOSS("boss"),
     DOOR("door"),
-    BOSS("boss"),
     CURSED("cursed"),
     ALTAIR("altair"),
     HEALTH_POTION("healthPotion");
