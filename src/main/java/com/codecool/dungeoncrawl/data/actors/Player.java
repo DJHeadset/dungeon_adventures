@@ -9,6 +9,8 @@ public class Player extends Actor {
     private boolean armor;
     private boolean weapon;
 
+    private String statusEffect = "none";
+
     public int getGold() {
         return gold;
     }
@@ -28,6 +30,10 @@ public class Player extends Actor {
         this.gold = 1500;
         this.weapon = false;
         this.armor = false;
+    }
+
+    public String getStatusEffect(){
+        return statusEffect;
     }
 
     public String getTileName() {
@@ -81,6 +87,21 @@ public class Player extends Actor {
             cell = nextCell;
         } else if (nextCell.getTileName().equals("healthPotion")) {
             health += 10;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+        else if(nextCell.getTileName().equals("cursed")){
+            attack += 20;
+            statusEffect = "cursed";
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+        else if (nextCell.getTileName().equals("altair")) {
+            statusEffect = "holy";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
