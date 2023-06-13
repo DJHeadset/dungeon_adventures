@@ -7,13 +7,12 @@ import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-
 import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map02.txt");
+    public static GameMap loadMap(String mapString) {
+        InputStream is = MapLoader.class.getResourceAsStream(mapString);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -54,6 +53,12 @@ public class MapLoader {
                         case 'w':
                             cell.setType(CellType.WEAPON);
                             break;
+                        case '6':
+                            cell.setType(CellType.CURSED);
+                            break;
+                        case '+' :
+                            cell.setType(CellType.ALTAIR);
+                            break;
                         case 'd':
                             cell.setType(CellType.DOORMAN);
                             break;
@@ -78,6 +83,9 @@ public class MapLoader {
                             break;
                         case 'r':
                             cell.setType(CellType.ROAD);
+                            break;
+                        case 'x':
+                            cell.setType(CellType.DOOR);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

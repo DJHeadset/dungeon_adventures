@@ -47,6 +47,10 @@ public class GameMap {
         this.ghost = ghost;
     }
 
+    public void removeGhost(){
+        ghost.getCell().setActor(null);
+    }
+
     public Ghost getGhost() {
         return ghost;
     }

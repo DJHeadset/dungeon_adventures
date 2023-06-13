@@ -13,8 +13,10 @@ public enum CellType {
     HEALTH_POTION("healthPotion"),
     TREE("tree"),
     TREE2("tree2"),
-    ROAD("road");
-
+    ROAD("road"),
+    DOOR("door"),
+    CURSED("cursed"),
+    ALTAIR("altair");
     private final String tileName;
 
     CellType(String tileName) {

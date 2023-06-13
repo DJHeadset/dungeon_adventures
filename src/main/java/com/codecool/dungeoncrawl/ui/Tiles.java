@@ -38,6 +38,9 @@ public class Tiles {
         tileMap.put("armor", new Tile(4,23));
         tileMap.put("boss", new Tile(30,6));
         tileMap.put("ghost", new Tile(24,8));
+        tileMap.put("door", new Tile(20,12));
+        tileMap.put("cursed", new Tile(3,24));
+        tileMap.put("altair", new Tile(2,14));
         tileMap.put("healthPotion", new Tile(25,23));
         tileMap.put("tree",new Tile(3,1));
         tileMap.put("tree2",new Tile(4,1));

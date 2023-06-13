@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
@@ -55,7 +56,12 @@ public class UI {
 
     public void refresh() {
         moveSkeletons();
-        moveGhost();
+        if(!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+            moveGhost();
+        }
+        else {
+            logic.getMap().removeGhost();
+        }
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -68,6 +74,8 @@ public class UI {
                 }
             }
         }
+        mainStage.setLevelLabelText(logic.getPlayerLevel());
+        mainStage.setExpLabelText(Integer.toString(10- logic.getPlayerExp()));
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
@@ -84,9 +92,6 @@ public class UI {
     private void moveGhost() {
         int playerX = logic.getMap().getPlayer().getX();
         int playerY = logic.getMap().getPlayer().getY();
-        logic.getMap().getGhost().act(playerX, playerY);
-
-
-
+        logic.getMap().getGhost().act(logic.getMap().getPlayer());
     }
 }

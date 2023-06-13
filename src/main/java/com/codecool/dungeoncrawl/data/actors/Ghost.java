@@ -17,45 +17,46 @@ public class Ghost extends Actor{
         return "ghost";
     }
     public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        if(nextCell.getActor() instanceof Player){
-            System.out.println("ghost attack!!!!");
-        }
-        else {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        }
+            Cell nextCell = cell.getNeighbor(dx, dy);
+            if (nextCell.getActor() instanceof Player) {
+                System.out.println("ghost attack!!!!");
+            } else {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+
 
     }
 
 
 
-    public void act(int playerX, int playerY){
+    public void act(Player player){
+        if(player.getStatusEffect().equals("cursed")) {
+            int playerX = player.getX();
+            int playerY = player.getY();
 
-        if(isPlayerNearby()){
-            attack();
-        }
-        else {
-            int moveX = Integer.compare(playerX, cell.getX());
-            int moveY = Integer.compare(playerY, cell.getY());
-            if (random.nextBoolean()) {
-                if (moveX != 0) {
-                    move(moveX, 0);
-                } else {
-                    move(moveX, moveY);
-                }
+            if (isPlayerNearby()) {
+                attack();
             } else {
-                if (moveY != 0) {
-                    move(0, moveY);
+                int moveX = Integer.compare(playerX, cell.getX());
+                int moveY = Integer.compare(playerY, cell.getY());
+                if (random.nextBoolean()) {
+                    if (moveX != 0) {
+                        move(moveX, 0);
+                    } else {
+                        move(moveX, moveY);
+                    }
                 } else {
-                   move(moveX, moveY);
+                    if (moveY != 0) {
+                        move(0, moveY);
+                    } else {
+                        move(moveX, moveY);
+                    }
                 }
+
             }
-
         }
-
-
     }
 
     private void attack() {
