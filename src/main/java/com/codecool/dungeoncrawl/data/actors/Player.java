@@ -85,6 +85,12 @@ public class Player extends Actor {
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if (nextCell.getTileName().equals("healthPotion")) {
+            health += 10;
+            cell.setActor(null);
+            nextCell.setType(CellType.FLOOR);
+            nextCell.setActor(this);
+            cell = nextCell;
         }
         else if(nextCell.getTileName().equals("cursed")){
             attack += 20;

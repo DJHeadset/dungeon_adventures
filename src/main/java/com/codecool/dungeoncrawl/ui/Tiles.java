@@ -40,8 +40,7 @@ public class Tiles {
         tileMap.put("ghost", new Tile(24,8));
         tileMap.put("cursed", new Tile(3,24));
         tileMap.put("altair", new Tile(2,14));
-
-
+        tileMap.put("healthPotion", new Tile(25,23));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
