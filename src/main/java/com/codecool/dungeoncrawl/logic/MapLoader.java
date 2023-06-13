@@ -69,6 +69,9 @@ public class MapLoader {
                             cell.setType(CellType.BOSS);
                             map.setBoss(new Boss(cell));
                             break;
+                        case 'h':
+                            cell.setType(CellType.HEALTH_POTION);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
