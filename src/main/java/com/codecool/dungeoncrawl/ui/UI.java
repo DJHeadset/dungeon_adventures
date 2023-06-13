@@ -90,8 +90,8 @@ public class UI {
     }
 
     private void moveGhost() {
-        int playerX = logic.getMap().getPlayer().getX();
-        int playerY = logic.getMap().getPlayer().getY();
-        logic.getMap().getGhost().act(logic.getMap().getPlayer());
+        if(logic.getMap().getGhost() != null) {
+            logic.getMap().getGhost().act(logic.getMap().getPlayer());
+        }
     }
 }

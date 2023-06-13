@@ -14,7 +14,7 @@ public class Player extends Actor {
 
     private int level;
 
-    private String statusEffect = "none";
+    private String statusEffect;
 
     public int getGold() {
         return gold;
@@ -50,6 +50,7 @@ public class Player extends Actor {
         this.gold = 1500;
         this.weapon = false;
         this.armor = false;
+        this.statusEffect = "none";
     }
 
     public String getStatusEffect(){
