@@ -38,4 +38,7 @@ public class MainStage {
     public void setGoldLabelText(String text) {
         this.statusPane.setGoldValue(text);
     }
+
+    public void setLevelLabelText(String text) {this.statusPane.setLevelValue(text);}
+    public void setExpLabelText(String text) {this.statusPane.setExpTextLabel(text);}
 }

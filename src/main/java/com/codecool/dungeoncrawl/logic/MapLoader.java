@@ -53,6 +53,12 @@ public class MapLoader {
                         case 'w':
                             cell.setType(CellType.WEAPON);
                             break;
+                        case '6':
+                            cell.setType(CellType.CURSED);
+                            break;
+                        case '+' :
+                            cell.setType(CellType.ALTAIR);
+                            break;
                         case 'd':
                             cell.setType(CellType.DOORMAN);
                             break;
@@ -65,6 +71,9 @@ public class MapLoader {
                         case 'b':
                             cell.setType(CellType.BOSS);
                             map.setBoss(new Boss(cell));
+                            break;
+                        case 'h':
+                            cell.setType(CellType.HEALTH_POTION);
                             break;
                         case 'x':
                             cell.setType(CellType.DOOR);
