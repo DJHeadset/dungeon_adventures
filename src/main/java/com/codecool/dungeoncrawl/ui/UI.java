@@ -81,7 +81,6 @@ public class UI {
         Iterator<Skeleton> iterator = activeSkeletons.iterator();
         while (iterator.hasNext()) {
             Skeleton skeleton = iterator.next();
-            System.out.println(skeleton.getHealth());
             skeleton.act();
             if (skeleton.getHealth() <= 0) {
                 skeleton.getCell().setActor(null);
@@ -93,11 +92,12 @@ public class UI {
     }
 
     private void getGhostAction() {
-        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy") && logic.getMap().getGhost() != null) {
-            logic.getMap().getGhost().act(logic.getMap().getPlayer());
-        }
-        else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")){
-            logic.getMap().removeGhost();
+        if(logic.getMap().getGhost() != null) {
+            if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+                logic.getMap().getGhost().act(logic.getMap().getPlayer());
+            } else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+                logic.getMap().removeGhost();
+            }
         }
 
     }
