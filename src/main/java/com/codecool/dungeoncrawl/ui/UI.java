@@ -52,12 +52,8 @@ public class UI {
     }
 
     public void refresh() {
-        moveSkeletons();
-        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
-            moveGhost();
-        } else {
-            logic.getMap().removeGhost();
-        }
+        getSkeletonActions();
+        getGhostAction();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -78,7 +74,7 @@ public class UI {
         mainStage.setGoldLabelText(logic.getPlayerGold());
     }
 
-    private void moveSkeletons() {
+    private void getSkeletonActions() {
         List<Skeleton> skeletons = logic.getMap().getSkeletons();
         List<Skeleton> activeSkeletons = new ArrayList<>(skeletons);
 
@@ -96,8 +92,14 @@ public class UI {
         logic.getMap().setSkeletons(activeSkeletons);
     }
 
-    private void moveGhost() {
-        logic.getMap().getGhost().act(logic.getMap().getPlayer());
+    private void getGhostAction() {
+        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy") && logic.getMap().getGhost() != null) {
+            logic.getMap().getGhost().act(logic.getMap().getPlayer());
+        }
+        else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")){
+            logic.getMap().removeGhost();
+        }
+
     }
 }
 
