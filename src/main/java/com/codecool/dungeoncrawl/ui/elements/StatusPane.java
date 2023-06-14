@@ -27,10 +27,10 @@ public class StatusPane {
 
     public StatusPane() {
         ui = new GridPane();
-        levelTextLabel = new Label();
-        levelValueLabel = new Label("Level: ");
-        expTextLabel = new Label();
-        expValueLabel = new Label("Missing xp: ");
+        levelTextLabel = new Label("Level: ");
+        levelValueLabel = new Label();
+        expTextLabel = new Label("Missing xp: ");
+        expValueLabel = new Label();
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
         attackTextLabel = new Label("Attack: ");
@@ -47,10 +47,10 @@ public class StatusPane {
 
         ui.setPrefWidth(RIGHT_PANEL_WIDTH);
         ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
-        ui.add(levelTextLabel, 1,0);
-        ui.add(levelValueLabel, 0,0);
-        ui.add(expTextLabel, 1,1);
-        ui.add(expValueLabel, 0,1);
+        ui.add(levelTextLabel, 0,0);
+        ui.add(levelValueLabel, 1,0);
+        ui.add(expTextLabel, 0,1);
+        ui.add(expValueLabel, 1,1);
         ui.add(healthTextLabel, 0, 2);
         ui.add(healthValueLabel, 1, 2);
         ui.add(attackTextLabel, 0, 3);
@@ -69,9 +69,8 @@ public class StatusPane {
     public void setHealthValue(String text) {
         healthValueLabel.setText(text);
     }
-
-    public void setLevelValue(String text) { levelTextLabel.setText(text);}
-    public void setExpTextLabel(String text) { expTextLabel.setText(text);}
+    public void setLevelValue(String text) { levelValueLabel.setText(text);}
+    public void setExpTextLabel(String text) { expValueLabel.setText(text);}
     public void setAttackValue(String text) {
         attackValueLabel.setText(text);
     }
@@ -80,8 +79,5 @@ public class StatusPane {
     }
     public void setGoldValue(String text) {
         goldValueLabel.setText(text);
-    }
-    public void setWeaponValue(String text) {
-        weaponValueLabel.setText(text);
     }
 }

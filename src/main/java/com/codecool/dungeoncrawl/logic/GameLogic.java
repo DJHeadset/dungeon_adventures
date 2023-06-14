@@ -36,6 +36,9 @@ public class GameLogic implements MapChanger {
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
     }
+    public String getPlayerMaxHealth() {
+        return Integer.toString((map.getPlayer().getMaxHealth()));
+    }
     public String getPlayerAttack() {
         return Integer.toString(map.getPlayer().getAttack());
     }

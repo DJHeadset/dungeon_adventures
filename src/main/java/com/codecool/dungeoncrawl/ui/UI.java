@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
@@ -52,12 +53,6 @@ public class UI {
     }
 
     public void refresh() {
-        moveSkeletons();
-        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
-            moveGhost();
-        } else {
-            logic.getMap().removeGhost();
-        }
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -70,9 +65,16 @@ public class UI {
                 }
             }
         }
+        moveSkeletons();
+        if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+            moveGhost();
+        } else {
+            logic.getMap().removeGhost();
+        }
+        checkBossFight();
         mainStage.setLevelLabelText(logic.getPlayerLevel());
         mainStage.setExpLabelText(Integer.toString(10 - logic.getPlayerExp()));
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setHealthLabelText(logic.getPlayerHealth(), logic.getPlayerMaxHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
         mainStage.setGoldLabelText(logic.getPlayerGold());
@@ -85,19 +87,26 @@ public class UI {
         Iterator<Skeleton> iterator = activeSkeletons.iterator();
         while (iterator.hasNext()) {
             Skeleton skeleton = iterator.next();
-            System.out.println(skeleton.getHealth());
             skeleton.act();
             if (skeleton.getHealth() <= 0) {
                 skeleton.getCell().setActor(null);
                 iterator.remove();
             }
         }
-        System.out.println("------");
         logic.getMap().setSkeletons(activeSkeletons);
     }
 
     private void moveGhost() {
         logic.getMap().getGhost().act(logic.getMap().getPlayer());
+    }
+
+    private void checkBossFight() {
+        if(logic.getMap().getBoss() != null) {
+            logic.getMap().getBoss().bossFight();
+            if(logic.getMap().getBoss().getHealth()<=0) {
+                logic.getMap().bossRemove();
+            }
+        }
     }
 }
 

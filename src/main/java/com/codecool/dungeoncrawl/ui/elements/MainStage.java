@@ -26,7 +26,8 @@ public class MainStage {
         return scene;
     }
 
-    public void setHealthLabelText(String text) {
+    public void setHealthLabelText(String health, String maxHealth) {
+        String text = health + "/" + maxHealth;
         this.statusPane.setHealthValue(text);
     }
     public void setAttackLabelText(String text) {
