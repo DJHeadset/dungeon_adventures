@@ -37,6 +37,7 @@ public class Skeleton extends Actor {
     private void attack(Player player) {
         System.out.println(health);
         health -= player.attack - defense;
+        player.health -= player.health - attack + player.defense;
         if (health <= 0) {
             player.exp += exp;
         }

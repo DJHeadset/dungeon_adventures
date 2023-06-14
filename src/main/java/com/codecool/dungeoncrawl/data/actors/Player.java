@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.logic.MapChanger;
 
 public class Player extends Actor {
 
+    private int maxHealth;
     private int gold;
     private boolean armor;
     private boolean weapon;
@@ -41,6 +42,7 @@ public class Player extends Actor {
         while (this.exp >= 10) {
             this.level++;
             this.health += 10;
+            this.maxHealth += 10;
             this.attack += 2;
             this.exp = this.exp - 10;
         }
@@ -49,11 +51,12 @@ public class Player extends Actor {
     public Player(Cell cell) {
         super(cell);
         this.health = 30;
+        this.maxHealth = health;
         this.attack = 10;
         this.defense = 5;
         this.exp = 0;
         this.level = 1;
-        this.gold = 1500;
+        this.gold = 0;
         this.weapon = false;
         this.armor = false;
         this.statusEffect = "none";
@@ -78,54 +81,58 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-
-        if ((nextCell.getTileName().equals("floor") || nextCell.getTileName().equals("road")) && nextCell.getActor() == null) {
+        CellType nextCellType = nextCell.getType();
+        if ((nextCellType == CellType.FLOOR || nextCellType == CellType.ROAD) && nextCell.getActor() == null) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("gold")) {
+        } else if (nextCellType == CellType.GOLD) {
             gold += 10;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("armor")) {
+        } else if (nextCellType == CellType.ARMOR) {
             defense += 10;
             armor = true;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("weapon")) {
+        } else if (nextCellType == CellType.WEAPON) {
             attack += 10;
             weapon = true;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("doorman")) {
-            gold -= 10;
-            cell.setActor(null);
-            nextCell.setType(CellType.FLOOR);
-            nextCell.setActor(this);
-            cell = nextCell;
-        } else if (nextCell.getTileName().equals("door")) {
-            System.out.println("Door");
+        } else if (nextCellType == CellType.DOORMAN) {
+            if(gold>=10){
+                gold -= 10;
+                cell.setActor(null);
+                nextCell.setType(CellType.FLOOR);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+        } else if (nextCellType == CellType.DOOR) {
             mapChanger.changeMap("/map02.txt");
-        } else if (nextCell.getTileName().equals("healthPotion")) {
+        } else if (nextCellType == CellType.HEALTH_POTION) {
             health += 10;
+            if(health>maxHealth) {
+                health = maxHealth;
+            }
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("cursed")) {
+        } else if (nextCellType == CellType.CURSED) {
             attack += 20;
             statusEffect = "cursed";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getTileName().equals("altair")) {
+        } else if (nextCellType == CellType.ALTAIR) {
             statusEffect = "holy";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
@@ -136,5 +143,9 @@ public class Player extends Actor {
 
     public void setMapChanger(MapChanger mapChanger) {
         this.mapChanger = mapChanger;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 }

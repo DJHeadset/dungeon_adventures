@@ -25,11 +25,7 @@ public class Ghost extends Actor{
                 nextCell.setActor(this);
                 cell = nextCell;
             }
-
-
     }
-
-
 
     public void act(Player player){
         if(player.getStatusEffect().equals("cursed")) {
@@ -54,7 +50,6 @@ public class Ghost extends Actor{
                         move(moveX, moveY);
                     }
                 }
-
             }
         }
     }

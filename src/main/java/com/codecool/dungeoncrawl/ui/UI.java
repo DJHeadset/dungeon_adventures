@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
@@ -52,8 +53,6 @@ public class UI {
     }
 
     public void refresh() {
-        getSkeletonActions();
-        getGhostAction();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -66,9 +65,12 @@ public class UI {
                 }
             }
         }
+        getSkeletonActions();
+        getGhostAction();
+        checkBossFight();
         mainStage.setLevelLabelText(logic.getPlayerLevel());
         mainStage.setExpLabelText(Integer.toString(10 - logic.getPlayerExp()));
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setHealthLabelText(logic.getPlayerHealth(), logic.getPlayerMaxHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
         mainStage.setGoldLabelText(logic.getPlayerGold());
@@ -87,7 +89,6 @@ public class UI {
                 iterator.remove();
             }
         }
-        System.out.println("------");
         logic.getMap().setSkeletons(activeSkeletons);
     }
 
@@ -100,6 +101,15 @@ public class UI {
             }
         }
 
+    }
+
+    private void checkBossFight() {
+        if(logic.getMap().getBoss() != null) {
+            logic.getMap().getBoss().bossFight();
+            if(logic.getMap().getBoss().getHealth()<=0) {
+                logic.getMap().bossRemove();
+            }
+        }
     }
 }
 

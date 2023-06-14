@@ -15,6 +15,7 @@ public class GameMap {
     private Player player;
     private ArrayList<Skeleton> skeletons = new ArrayList<>();
     private Ghost ghost;
+    private Boss boss;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -35,6 +36,9 @@ public class GameMap {
     public Ghost getGhost() {
         return ghost;
     }
+    public Boss getBoss() {
+        return boss;
+    }
 
     public List<Skeleton> getSkeletons() {
         return skeletons;
@@ -52,8 +56,8 @@ public class GameMap {
         return height;
     }
 
-    public Boss setBoss(Boss boss) {
-        return boss;
+    public void setBoss(Boss boss) {
+        this.boss = boss;
     }
 
     public void setSkeletons(List<Skeleton> activeSkeletons) {
@@ -74,6 +78,10 @@ public class GameMap {
 
     public void setGhost(Ghost ghost) {
         this.ghost = ghost;
+    }
+
+    public void bossRemove() {
+        boss.getCell().setActor(null);
     }
 }
 

@@ -69,7 +69,7 @@ public class MapLoader {
                             cell.setType(CellType.ARMOR);
                             break;
                         case 'b':
-                            cell.setType(CellType.BOSS);
+                            cell.setType(CellType.FLOOR);
                             map.setBoss(new Boss(cell));
                             break;
                         case 'h':
