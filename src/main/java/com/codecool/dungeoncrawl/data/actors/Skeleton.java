@@ -10,7 +10,9 @@ public class Skeleton extends Actor {
 
     public Skeleton(Cell cell) {
         super(cell);
-        this.health = 100;
+        this.health = 15;
+        this.attack = 10;
+        this.defense = 1;
         this.exp = 5;
     }
 
@@ -36,10 +38,13 @@ public class Skeleton extends Actor {
 
     private void attack(Player player) {
         System.out.println(health);
+        int damage = attack - player.defense;
+        if(damage > 0) {
+            player.health -= attack - player.defense;
+        }
         health -= player.attack - defense;
-        player.health -= player.health - attack + player.defense;
         if (health <= 0) {
-            player.exp += exp;
+            player.handleExp(exp);
         }
     }
 

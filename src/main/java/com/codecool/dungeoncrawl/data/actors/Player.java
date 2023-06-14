@@ -41,7 +41,6 @@ public class Player extends Actor {
         this.exp += exp;
         while (this.exp >= 10) {
             this.level++;
-            this.health += 10;
             this.maxHealth += 10;
             this.attack += 2;
             this.exp = this.exp - 10;
@@ -52,7 +51,7 @@ public class Player extends Actor {
         super(cell);
         this.health = 30;
         this.maxHealth = health;
-        this.attack = 10;
+        this.attack = 5;
         this.defense = 5;
         this.exp = 0;
         this.level = 1;
@@ -93,14 +92,14 @@ public class Player extends Actor {
             nextCell.setActor(this);
             cell = nextCell;
         } else if (nextCellType == CellType.ARMOR) {
-            defense += 10;
+            defense += 15;
             armor = true;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
         } else if (nextCellType == CellType.WEAPON) {
-            attack += 10;
+            attack += 15;
             weapon = true;
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
@@ -117,7 +116,7 @@ public class Player extends Actor {
         } else if (nextCellType == CellType.DOOR) {
             mapChanger.changeMap("/map02.txt");
         } else if (nextCellType == CellType.HEALTH_POTION) {
-            health += 10;
+            health += 15;
             if(health>maxHealth) {
                 health = maxHealth;
             }
@@ -126,7 +125,7 @@ public class Player extends Actor {
             nextCell.setActor(this);
             cell = nextCell;
         } else if (nextCellType == CellType.CURSED) {
-            attack += 20;
+            attack += 10;
             statusEffect = "cursed";
             cell.setActor(null);
             nextCell.setType(CellType.FLOOR);
