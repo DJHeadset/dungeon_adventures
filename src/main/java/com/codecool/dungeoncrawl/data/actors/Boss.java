@@ -6,9 +6,9 @@ public class Boss extends Actor {
 
     public Boss(Cell cell) {
         super(cell);
-        this.health = 30;
-        this.attack = 10;
-        this.defense = 5;
+        this.health = 80;
+        this.attack = 25;
+        this.defense = 15;
         this.exp = 10;
     }
 
@@ -35,7 +35,10 @@ public class Boss extends Actor {
     private void attack(Player player) {
         System.out.println(health);
         health -= player.attack - defense;
-        player.health -= player.health - attack + player.defense;
+        int damage = attack - player.defense;
+        if(damage > 0) {
+            player.health -= attack - player.defense;
+        }
         if (health <= 0) {
             player.exp += exp;
         }
