@@ -41,6 +41,7 @@ public class Boss extends Actor {
         }
         if (health <= 0) {
             player.exp += exp;
+
         }
     }
 

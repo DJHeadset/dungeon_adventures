@@ -56,5 +56,6 @@ public class GameLogic implements MapChanger {
     @Override
     public void changeMap(String mapString) {
         map = MapLoader.loadMap(mapString);
+        map.getPlayer().setMapChanger(this);
     }
 }
