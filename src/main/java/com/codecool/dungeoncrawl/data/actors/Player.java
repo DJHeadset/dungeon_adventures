@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.logic.MapChanger;
 
 
@@ -11,6 +12,7 @@ public class Player extends Actor {
     private int gold;
     private boolean armor;
     private boolean weapon;
+
     private MapChanger mapChanger;
 
     private int level;
@@ -79,6 +81,9 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
+        if(health <= 0){
+            mapChanger.changeMap("/game-over.txt");
+        }
         Cell nextCell = cell.getNeighbor(dx, dy);
         CellType nextCellType = nextCell.getType();
         if ((nextCellType == CellType.FLOOR || nextCellType == CellType.ROAD) && nextCell.getActor() == null) {
@@ -137,6 +142,8 @@ public class Player extends Actor {
             nextCell.setType(CellType.FLOOR);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if( nextCellType == CellType.PRINCESS){
+            mapChanger.changeMap("/gg.txt");
         }
     }
 
