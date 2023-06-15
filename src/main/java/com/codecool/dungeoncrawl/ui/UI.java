@@ -90,7 +90,7 @@ public class UI {
 
     private void getGhostAction() {
         if (logic.getMap().getGhost() != null) {
-            if (!logic.getMap().getPlayer().getStatusEffect().equals("cursed")) {
+            if (logic.getMap().getPlayer().getStatusEffect().equals("cursed")) {
                 logic.getMap().getGhost().act(logic.getMap().getPlayer());
             } else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
                 logic.getMap().removeGhost();

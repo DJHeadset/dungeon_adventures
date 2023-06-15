@@ -85,8 +85,8 @@ public class Player extends Actor {
         cell = nextCell;
     }
 
-    public void handleExp(int exp) {
-        this.exp += exp;
+    public void handleExp(int experience) {
+        exp += experience;
         if (exp >= expToNextLevel) {
             level++;
             maxHealth += 10;
