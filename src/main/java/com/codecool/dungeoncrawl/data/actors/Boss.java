@@ -12,7 +12,7 @@ public class Boss extends Actor {
         this.exp = 10;
     }
 
-    public void bossFight(){
+    public void bossFight() {
         Player player = isPlayerNearby();
         if (player != null) {
             attack(player);
@@ -33,15 +33,13 @@ public class Boss extends Actor {
     }
 
     private void attack(Player player) {
-        System.out.println(health);
         health -= player.attack - defense;
         int damage = attack - player.defense;
-        if(damage > 0) {
+        if (damage > 0) {
             player.health -= attack - player.defense;
         }
         if (health <= 0) {
             player.exp += exp;
-
         }
     }
 

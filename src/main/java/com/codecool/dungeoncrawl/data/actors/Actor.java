@@ -11,8 +11,6 @@ public abstract class Actor implements Drawable {
     protected int exp;
     public Cell cell;
 
-
-
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);

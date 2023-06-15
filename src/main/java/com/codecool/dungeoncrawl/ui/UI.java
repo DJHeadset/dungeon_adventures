@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.actors.Boss;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
@@ -23,10 +22,8 @@ public class UI {
     private final GameLogic logic;
     private final Set<KeyHandler> keyHandlers;
 
-    private Random random;
 
-
-    public UI(GameLogic logic, Set<KeyHandler> keyHandlers, Random random) {
+    public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
                 logic.getMapWidth() * Tiles.TILE_WIDTH,
                 logic.getMapHeight() * Tiles.TILE_WIDTH);
@@ -34,7 +31,6 @@ public class UI {
         this.context = canvas.getGraphicsContext2D();
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
-        this.random = random;
     }
 
     public void setUpPain(Stage primaryStage) {
@@ -69,7 +65,7 @@ public class UI {
         getGhostAction();
         checkBossFight();
         mainStage.setLevelLabelText(logic.getPlayerLevel());
-        mainStage.setExpLabelText(Integer.toString(10 - logic.getPlayerExp()));
+        mainStage.setExpLabelText(Integer.toString(logic.getPlayerExp()));
         mainStage.setHealthLabelText(logic.getPlayerHealth(), logic.getPlayerMaxHealth());
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
@@ -93,8 +89,8 @@ public class UI {
     }
 
     private void getGhostAction() {
-        if(logic.getMap().getGhost() != null) {
-            if (!logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+        if (logic.getMap().getGhost() != null) {
+            if (!logic.getMap().getPlayer().getStatusEffect().equals("cursed")) {
                 logic.getMap().getGhost().act(logic.getMap().getPlayer());
             } else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
                 logic.getMap().removeGhost();
@@ -104,9 +100,9 @@ public class UI {
     }
 
     private void checkBossFight() {
-        if(logic.getMap().getBoss() != null) {
+        if (logic.getMap().getBoss() != null) {
             logic.getMap().getBoss().bossFight();
-            if(logic.getMap().getBoss().getHealth()<=0) {
+            if (logic.getMap().getBoss().getHealth() <= 0) {
                 logic.getMap().bossRemove();
             }
         }

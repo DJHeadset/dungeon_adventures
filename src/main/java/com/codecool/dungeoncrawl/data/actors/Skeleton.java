@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import java.util.Random;
 
 public class Skeleton extends Actor {
-    private Random random = new Random();
+    private final Random random = new Random();
     private int health;
 
     public Skeleton(Cell cell) {
