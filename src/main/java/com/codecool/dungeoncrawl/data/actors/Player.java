@@ -6,27 +6,29 @@ import com.codecool.dungeoncrawl.logic.MapChanger;
 
 
 public class Player extends Actor {
-
-    private int expToNextLevel;
     private int maxHealth;
     private int gold;
     private boolean armor;
     private boolean weapon;
 
-    private MapChanger mapChanger;
+    protected MapChanger mapChanger;
 
     private int level;
 
     private String statusEffect;
 
+    private static int number = 1;
+
+    public int id;
+
     public Player(Cell cell) {
         super(cell);
+        id = number++;
         this.health = 30;
         this.maxHealth = health;
         this.attack = 5;
         this.defense = 5;
         this.exp = 0;
-        this.expToNextLevel = 10;
         this.level = 1;
         this.gold = 0;
         this.weapon = false;
@@ -40,6 +42,9 @@ public class Player extends Actor {
             mapChanger.changeMap("/game-over.txt");
         }
         Cell nextCell = cell.getNeighbor(dx, dy);
+        if(nextCell.getActor() != null){
+            attack(nextCell.getActor());
+        }
         CellType nextCellType = nextCell.getType();
         if ((nextCellType == CellType.FLOOR || nextCellType == CellType.ROAD) && nextCell.getActor() == null) {
             movePlayer(nextCell);
@@ -87,15 +92,19 @@ public class Player extends Actor {
 
     public void handleExp(int exp) {
         this.exp += exp;
-        if (exp >= expToNextLevel) {
+        if (this.exp >= 10) {
             level++;
+            health += 10;
             maxHealth += 10;
             attack += 2;
-            expToNextLevel = 10 + level;
+            this.exp = this.exp - 10;
         }
     }
 
     public String getTileName() {
+        if(id % 2 == 0){
+            return "player2";
+        }
         if (this.hasWeapon() && !this.hasArmor()) {
             return "playerWithWeapon";
         } else if (!this.hasWeapon() && this.hasArmor()) {

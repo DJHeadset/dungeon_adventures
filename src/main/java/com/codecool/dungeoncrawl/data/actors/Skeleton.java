@@ -4,9 +4,10 @@ import com.codecool.dungeoncrawl.data.Cell;
 
 import java.util.Random;
 
-public class Skeleton extends Actor {
+public class Skeleton extends NPC {
     private final Random random = new Random();
-    private int health;
+
+    public char name;
 
     public Skeleton(Cell cell) {
         super(cell);
@@ -14,16 +15,12 @@ public class Skeleton extends Actor {
         this.attack = 10;
         this.defense = 1;
         this.exp = 5;
+        name = (char) random.nextInt(26);
     }
 
     @Override
     public String getTileName() {
         return "skeleton";
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
     }
 
     @Override
@@ -33,17 +30,6 @@ public class Skeleton extends Actor {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
-        }
-    }
-
-    private void attack(Player player) {
-        int damage = attack - player.defense;
-        if(damage > 0) {
-            player.health -= attack - player.defense;
-        }
-        health -= player.attack - defense;
-        if (health <= 0) {
-            player.handleExp(exp);
         }
     }
 
@@ -62,17 +48,6 @@ public class Skeleton extends Actor {
         }
     }
 
-    private Player isPlayerNearby() {
-        if (cell.getNeighbor(0, 1).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(0, 1).getActor();
-        } else if (cell.getNeighbor(0, -1).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(0, -1).getActor();
-        } else if (cell.getNeighbor(1, 0).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(1, 0).getActor();
-        } else if (cell.getNeighbor(-1, 0).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(-1, 0).getActor();
-        }
-        return null;
-    }
+
 }
 

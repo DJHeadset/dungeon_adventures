@@ -8,7 +8,7 @@ public class GameLogic implements MapChanger {
 
     public GameLogic(String mapString) {
         this.map = MapLoader.loadMap(mapString);
-        this.map.getPlayer().setMapChanger(this);
+        this.map.getPlayers().get(0).setMapChanger(this);
     }
 
     public double getMapWidth() {
@@ -27,26 +27,26 @@ public class GameLogic implements MapChanger {
     }
 
     public String getPlayerLevel(){
-        return Integer.toString(map.getPlayer().getLevel());
+        return Integer.toString(map.getPlayers().get(0).getLevel());
     }
     public int getPlayerExp(){
-        return map.getPlayer().getExp();
+        return map.getPlayers().get(0).getExp();
     }
 
     public String getPlayerHealth() {
-        return Integer.toString(map.getPlayer().getHealth());
+        return Integer.toString(map.getPlayers().get(0).getHealth());
     }
     public String getPlayerMaxHealth() {
-        return Integer.toString((map.getPlayer().getMaxHealth()));
+        return Integer.toString((map.getPlayers().get(0).getMaxHealth()));
     }
     public String getPlayerAttack() {
-        return Integer.toString(map.getPlayer().getAttack());
+        return Integer.toString(map.getPlayers().get(0).getAttack());
     }
     public String getPlayerDefense() {
-        return Integer.toString(map.getPlayer().getDefense());
+        return Integer.toString(map.getPlayers().get(0).getDefense());
     }
     public String getPlayerGold() {
-        return Integer.toString(map.getPlayer().getGold());
+        return Integer.toString(map.getPlayers().get(0).getGold());
     }
 
     public GameMap getMap() {
@@ -56,6 +56,6 @@ public class GameLogic implements MapChanger {
     @Override
     public void changeMap(String mapString) {
         map = MapLoader.loadMap(mapString);
-        map.getPlayer().setMapChanger(this);
+        map.getPlayers().get(0).setMapChanger(this);
     }
 }

@@ -12,7 +12,7 @@ public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
-    private Player player;
+    private ArrayList<Player> players = new ArrayList<>(2);
     private ArrayList<Skeleton> skeletons = new ArrayList<>();
     private Ghost ghost;
     private Boss boss;
@@ -68,12 +68,12 @@ public class GameMap {
         return cells[x][y];
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 
-    public Player getPlayer() {
-        return player;
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public void setGhost(Ghost ghost) {

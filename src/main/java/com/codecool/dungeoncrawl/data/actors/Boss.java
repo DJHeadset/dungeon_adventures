@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class Boss extends Actor {
+public class Boss extends NPC {
 
     public Boss(Cell cell) {
         super(cell);
@@ -19,18 +19,7 @@ public class Boss extends Actor {
         }
     }
 
-    private Player isPlayerNearby() {
-        if (cell.getNeighbor(0, 1).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(0, 1).getActor();
-        } else if (cell.getNeighbor(0, -1).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(0, -1).getActor();
-        } else if (cell.getNeighbor(1, 0).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(1, 0).getActor();
-        } else if (cell.getNeighbor(-1, 0).getActor() instanceof Player) {
-            return (Player) cell.getNeighbor(-1, 0).getActor();
-        }
-        return null;
-    }
+
 
     private void attack(Player player) {
         health -= player.attack - defense;

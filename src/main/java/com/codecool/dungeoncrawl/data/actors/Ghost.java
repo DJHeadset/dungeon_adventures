@@ -4,12 +4,15 @@ import com.codecool.dungeoncrawl.data.Cell;
 
 import java.util.Random;
 
-public class Ghost extends Actor {
+public class Ghost extends NPC {
 
     private final Random random = new Random();
 
     public Ghost(Cell cell) {
         super(cell);
+        health = 100000;
+        attack = 3;
+
     }
 
     @Override
@@ -17,21 +20,14 @@ public class Ghost extends Actor {
         return "ghost";
     }
 
-    public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.getActor() instanceof Player) {
-            System.out.println("ghost attack!!!!");
-        } else {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
+    public void act(Player playerGlobal) {
+        Player player = isPlayerNearby();
+        if(player != null){
+            attack(player);
         }
-    }
-
-    public void act(Player player) {
-        if (player.getStatusEffect().equals("cursed")) {
-            int playerX = player.getX();
-            int playerY = player.getY();
+       else if (playerGlobal.getStatusEffect().equals("cursed")) {
+            int playerX = playerGlobal.getX();
+            int playerY = playerGlobal.getY();
 
             int moveX = Integer.compare(playerX, cell.getX());
             int moveY = Integer.compare(playerY, cell.getY());

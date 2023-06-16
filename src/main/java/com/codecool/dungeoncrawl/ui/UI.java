@@ -22,6 +22,8 @@ public class UI {
     private final GameLogic logic;
     private final Set<KeyHandler> keyHandlers;
 
+    private int playersLeftToMove;
+
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
@@ -31,6 +33,7 @@ public class UI {
         this.context = canvas.getGraphicsContext2D();
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
+        playersLeftToMove = logic.getMap().getPlayers().size();
     }
 
     public void setUpPain(Stage primaryStage) {
@@ -45,7 +48,10 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
-        refresh();
+        playersLeftToMove--;
+        if(playersLeftToMove == 0) {
+            refresh();
+        }
     }
 
     public void refresh() {
@@ -70,6 +76,7 @@ public class UI {
         mainStage.setAttackLabelText(logic.getPlayerAttack());
         mainStage.setDefenseLabelText(logic.getPlayerDefense());
         mainStage.setGoldLabelText(logic.getPlayerGold());
+        playersLeftToMove = logic.getMap().getPlayers().size();
     }
 
     private void getSkeletonActions() {
@@ -90,9 +97,11 @@ public class UI {
 
     private void getGhostAction() {
         if (logic.getMap().getGhost() != null) {
-            if (!logic.getMap().getPlayer().getStatusEffect().equals("cursed")) {
-                logic.getMap().getGhost().act(logic.getMap().getPlayer());
-            } else if (logic.getMap().getPlayer().getStatusEffect().equals("holy")) {
+            if (!logic.getMap().getPlayers().get(0).getStatusEffect().equals("holy") ||
+                    logic.getMap().getPlayers().get(1).getStatusEffect().equals("holy")) {
+                logic.getMap().getGhost().act(logic.getMap().getPlayers().get(0));
+            } else if (logic.getMap().getPlayers().get(0).getStatusEffect().equals("holy") ||
+                    logic.getMap().getPlayers().get(1).getStatusEffect().equals("holy")) {
                 logic.getMap().removeGhost();
             }
         }
