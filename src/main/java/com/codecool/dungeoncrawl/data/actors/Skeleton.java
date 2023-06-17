@@ -9,11 +9,7 @@ public class Skeleton extends Actor {
     private int health;
 
     public Skeleton(Cell cell) {
-        super(cell);
-        this.health = 15;
-        this.attack = 10;
-        this.defense = 1;
-        this.exp = 5;
+        super(15,1,10,5,cell);
     }
 
     @Override
@@ -21,10 +17,7 @@ public class Skeleton extends Actor {
         return "skeleton";
     }
 
-    @Override
-    public int getHealth() {
-        return health;
-    }
+
 
     @Override
     public void move(int dx, int dy) {

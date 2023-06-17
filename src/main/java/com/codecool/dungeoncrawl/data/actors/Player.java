@@ -20,12 +20,8 @@ public class Player extends Actor {
     private String statusEffect;
 
     public Player(Cell cell) {
-        super(cell);
-        this.health = 30;
+        super(30,5,5,0,cell);
         this.maxHealth = health;
-        this.attack = 5;
-        this.defense = 5;
-        this.exp = 0;
         this.expToNextLevel = 10;
         this.level = 1;
         this.gold = 0;
@@ -96,11 +92,11 @@ public class Player extends Actor {
     }
 
     public String getTileName() {
-        if (this.hasWeapon() && !this.hasArmor()) {
+        if (weapon && !armor) {
             return "playerWithWeapon";
-        } else if (!this.hasWeapon() && this.hasArmor()) {
+        } else if (!weapon && armor) {
             return "playerWithArmor";
-        } else if (this.hasWeapon() && this.hasArmor()) {
+        } else if (weapon && armor) {
             return "playerFullGear";
         } else {
             return "player";
@@ -117,14 +113,6 @@ public class Player extends Actor {
 
     public int getExp() {
         return exp;
-    }
-
-    public boolean hasWeapon() {
-        return weapon;
-    }
-
-    public boolean hasArmor() {
-        return armor;
     }
 
     public String getStatusEffect() {

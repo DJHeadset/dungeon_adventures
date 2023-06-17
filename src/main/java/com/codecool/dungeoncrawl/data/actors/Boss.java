@@ -5,11 +5,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 public class Boss extends Actor {
 
     public Boss(Cell cell) {
-        super(cell);
-        this.health = 80;
-        this.attack = 25;
-        this.defense = 15;
-        this.exp = 10;
+        super(80,15,25,10,cell);
     }
 
     public void bossFight() {
@@ -48,4 +44,6 @@ public class Boss extends Actor {
         return "boss";
     }
 
+    @Override
+    public void move(int dx, int dy) {}
 }

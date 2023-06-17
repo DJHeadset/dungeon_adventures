@@ -9,7 +9,7 @@ public class Ghost extends Actor {
     private final Random random = new Random();
 
     public Ghost(Cell cell) {
-        super(cell);
+        super(1,1,1,1, cell);
     }
 
     @Override

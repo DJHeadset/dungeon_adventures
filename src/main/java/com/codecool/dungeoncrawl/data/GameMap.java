@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private int width;
-    private int height;
-    private Cell[][] cells;
+    private final int width;
+    private final int height;
+    private final Cell[][] cells;
     private Player player;
     private ArrayList<Skeleton> skeletons = new ArrayList<>();
     private Ghost ghost;
