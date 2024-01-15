@@ -6,6 +6,29 @@
 The user can control a character and his main purpese is to save the princess. 
 Until he reaches the princess he needs to defeat skeletons, collect items like gold, armor and weapons in a 2D tile-based labyrinth.
 
+## Built With
+## Getting Started
+## Prerequisites
+Java JDK
+
+
+## Authors
+Tihamér Antal
+Zoltán Blaho
+Áron Storozinszki
+
+## Contact
+Tihamér Antal
+LinkedIn: www.linkedin.com/in/tihamer-antal/
+Email: antaltihamer97@gmail.com
+
+Zoltan Blaho
+LinkedIn: www.linkedin.com/in/zoltan-blaho
+Email: zoltan.blaho.83@gmail.com
+
+Áron Storozinszki
+LinkedIn: linkedin.com/in/áron-storozinszki-414a52299
+
 [Roguelikes](https://en.wikipedia.org/wiki/Roguelike) are one of the oldest
 types of video games. The earliest ones were made in the 70s, and they were inspired
 a lot by tabletop RPGs. Roguelikes usually have the following features in common.
