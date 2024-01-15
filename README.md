@@ -1,7 +1,10 @@
 
 # Dungeon Crawl
 
-## Story
+## About The Project
+"Dungeon Crawl" is a Roguelike game which is one of the oldest types of video games.
+The user can control a character and his main purpese is to save the princess. 
+Until he reaches the princess he needs to defeat skeletons, collect items like gold, armor and weapons in a 2D tile-based labyrinth.
 
 [Roguelikes](https://en.wikipedia.org/wiki/Roguelike) are one of the oldest
 types of video games. The earliest ones were made in the 70s, and they were inspired
