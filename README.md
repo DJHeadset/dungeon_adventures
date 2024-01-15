@@ -8,26 +8,33 @@ Until he reaches the princess he needs to defeat skeletons, collect items like g
 
 ## Built With
 ## Getting Started
-## Prerequisites
+### Prerequisites
 Java JDK
+### Installation
+Clone the repository: 
+git clone https://github.com/DJHeadset/dungeon_adventures.git
+### Navigate to the required directory:
+cd dungeon_adventures\src\main\java\com\codecool\dungeoncrawl
 
+### Run command:
+javac App.java 
 
 ## Authors
-Tihamér Antal
-Zoltán Blaho
-Áron Storozinszki
+Tihamér Antal 
+Zoltán Blaho 
+Áron Storozinszki 
 
 ## Contact
-Tihamér Antal
-LinkedIn: www.linkedin.com/in/tihamer-antal/
-Email: antaltihamer97@gmail.com
+Tihamér Antal 
+LinkedIn: www.linkedin.com/in/tihamer-antal/ 
+Email: antaltihamer97@gmail.com 
 
-Zoltan Blaho
-LinkedIn: www.linkedin.com/in/zoltan-blaho
-Email: zoltan.blaho.83@gmail.com
+Zoltan Blaho 
+LinkedIn: www.linkedin.com/in/zoltan-blaho 
+Email: zoltan.blaho.83@gmail.com 
 
-Áron Storozinszki
-LinkedIn: linkedin.com/in/áron-storozinszki-414a52299
+Áron Storozinszki 
+LinkedIn: linkedin.com/in/áron-storozinszki-414a52299 
 
 [Roguelikes](https://en.wikipedia.org/wiki/Roguelike) are one of the oldest
 types of video games. The earliest ones were made in the 70s, and they were inspired
