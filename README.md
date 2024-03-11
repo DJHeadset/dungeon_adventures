@@ -1,5 +1,5 @@
-
-# Dungeon Crawl
+<h1 align="center">  Dungeon Crawl </h1>
+<a name="readme-top"></a>
 
 ## About The Project
 "Dungeon Crawl" is a Roguelike game which is one of the oldest types of video games.
