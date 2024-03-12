@@ -28,8 +28,8 @@ Until he reaches the princess he needs to defeat skeletons, collect items like g
 
 ## Getting Started
 ### Prerequisites
-Java JDK  
-JavaFX  
+* Java JDK  
+* JavaFX  
 ### Installation
 Clone the repository:  
 git clone https://github.com/DJHeadset/dungeon_adventures.git
