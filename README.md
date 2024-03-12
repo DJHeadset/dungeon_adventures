@@ -28,30 +28,40 @@ Until he reaches the princess he needs to defeat skeletons, collect items like g
 
 ## Getting Started
 ### Prerequisites
-* Java JDK  
-* JavaFX  
+* Java Development Kit (JDK)  
+* Integrated Development Environment (IDE)
+* JavaFX
+   
 ### Installation
-Clone the repository:  
-git clone https://github.com/DJHeadset/dungeon_adventures.git
-### Navigate to the required directory:
-cd dungeon_adventures\src\main\java\com\codecool\dungeoncrawl
-
-### Run command:
-javac App.java 
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/DJHeadset/dungeon_adventures.git
+   ```
+2. Navigate to the required directory
+   ```sh
+   cd dungeon_adventures\src\main\java\com\codecool\dungeoncrawl
+   ``` 
+3. Run command
+   ```sh
+   javac App.java 
+   ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>  
 
 ## Authors
-Tihamér Antal  
-Zoltán Blaho  
-Áron Storozinszki  
+1. Tihamér Antal  
+2. Zoltán Blaho  
+3. Áron Storozinszki
+<p align="right">(<a href="#readme-top">back to top</a>)</p>  
 
 ## Contact
 Tihamér Antal  
-LinkedIn: www.linkedin.com/in/tihamer-antal/  
-Email: antaltihamer97@gmail.com  
+* LinkedIn: www.linkedin.com/in/tihamer-antal/  
+* Email: antaltihamer97@gmail.com  
 
 Zoltan Blaho  
-LinkedIn: www.linkedin.com/in/zoltan-blaho  
-Email: zoltan.blaho.83@gmail.com  
+* LinkedIn: www.linkedin.com/in/zoltan-blaho  
+* Email: zoltan.blaho.83@gmail.com  
 
 Áron Storozinszki  
-LinkedIn: www.linkedin.com/in/áron-storozinszki-414a52299  
+* LinkedIn: www.linkedin.com/in/áron-storozinszki-414a52299
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
